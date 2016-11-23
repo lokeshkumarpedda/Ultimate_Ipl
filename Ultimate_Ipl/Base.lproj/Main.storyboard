@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--TeamsVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="TeamsVC" customModule="Ultimate_Ipl" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="35Z-Ex-KdR">
+                                <rect key="frame" x="0.0" y="161" width="375" height="346"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="50" minimumInteritemSpacing="100" id="dqs-xv-1N3">
+                                    <size key="itemSize" width="387" height="327"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TeamLogocell" id="ecS-n3-ZOz" customClass="TeamLogosCVCell" customModule="Ultimate_Ipl" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="10" width="387" height="327"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="387" height="327"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wKt-CF-dk7">
+                                                    <rect key="frame" x="0.0" y="0.0" width="387" height="327"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="wKt-CF-dk7" secondAttribute="bottom" id="FF3-gC-bOG"/>
+                                            <constraint firstItem="wKt-CF-dk7" firstAttribute="leading" secondItem="ecS-n3-ZOz" secondAttribute="leading" id="aPS-tP-AdG"/>
+                                            <constraint firstAttribute="trailing" secondItem="wKt-CF-dk7" secondAttribute="trailing" id="jen-4O-Fpa"/>
+                                            <constraint firstItem="wKt-CF-dk7" firstAttribute="top" secondItem="ecS-n3-ZOz" secondAttribute="top" id="waM-uQ-cOR"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="logoImageView" destination="wKt-CF-dk7" id="knA-hI-Lmm"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="mrY-8m-SAv"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Qx4-qN-CWh"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="35Z-Ex-KdR" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="width" id="GVg-UC-uMp"/>
+                            <constraint firstItem="35Z-Ex-KdR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ab1-Rf-dAm"/>
+                            <constraint firstAttribute="trailing" secondItem="35Z-Ex-KdR" secondAttribute="trailing" id="fsD-OD-DJ7"/>
+                            <constraint firstItem="35Z-Ex-KdR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="i3V-Tg-EMz"/>
+                            <constraint firstItem="35Z-Ex-KdR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="w2u-ti-j37"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="TeamsCollectionView" destination="35Z-Ex-KdR" id="na5-gf-Z0u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="130.88455772113943"/>
+        </scene>
+    </scenes>
+</document>
