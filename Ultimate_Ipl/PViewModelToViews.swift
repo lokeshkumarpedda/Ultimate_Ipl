@@ -11,5 +11,5 @@ import UIKit
 
 protocol PReloading {
     
-    func reloadCollectionView()
+    func reloadView()
 }

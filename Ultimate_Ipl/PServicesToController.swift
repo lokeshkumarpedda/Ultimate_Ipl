@@ -11,4 +11,6 @@ import UIKit
 protocol FromServices {
     func giveDataToController(team : [TeamLogos])
     func getDataFromDatabase()
+    
+    func gotThePlayers(forTeam team:String)
 }

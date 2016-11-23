@@ -36,10 +36,15 @@ class TeamsViewModel {
        return Utility.decodeImagefromBase64(strBase64: mTeamLogos[index].teamLogo!)
     }
     
+    //gives team name
+    func getTeamName(index: Int) -> String{
+        return mTeamLogos[index].teamName!
+    }
+    
 }
 extension TeamsViewModel : TeamDataGetting{
     func dataToViewModel(team : [TeamLogos]){
         mTeamLogos = team
-        reloadingProtocol?.reloadCollectionView()
+        reloadingProtocol?.reloadView()
     }
 }

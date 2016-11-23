@@ -11,3 +11,7 @@ import UIKit
 protocol TeamDataGetting {
     func dataToViewModel(team : [TeamLogos])
 }
+
+protocol PlayerDataGetting {
+    func playerDataToViewModel(players : [Player])
+}

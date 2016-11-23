@@ -11,4 +11,16 @@ struct Constants {
     struct TeamsLogo {
         static let cellIdentifier = "TeamLogocell"
     }
+    
+    struct TeamToPlayers {
+        static let segueIdentifier = "teamToPlayersVC"
+    }
+    
+    struct PlayerNames {
+        static let cellIdentifier = "PlayerCell"
+    }
+    
+    struct PlayerToDetails {
+        static let segueIdentifier = "PlayersToDetailsVC"
+    }
 }

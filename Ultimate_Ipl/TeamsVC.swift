@@ -15,20 +15,21 @@ class TeamsVC: UIViewController {
     
     var teamsVMObj : TeamsViewModel?
     var mCurrentIndexPath : IndexPath?
-    
+    var mSelectedTeam : String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         teamsVMObj = TeamsViewModel(withProtocol: self)
         teamsVMObj?.getTeamData()
         TeamsCollectionView.backgroundColor = UIColor.clear
         self.view.backgroundColor = UIColor.clear
         mCurrentIndexPath = IndexPath(row: 0, section: 0)
-        Timer.scheduledTimer(
-            timeInterval: 3,
-            target: self,
-            selector:#selector(mChangeTheCell) ,
-            userInfo: nil,
-            repeats: true)
+        //Timer.scheduledTimer(
+//            timeInterval: 3,
+//            target: self,
+//            selector:#selector(mChangeTheCell) ,
+//            userInfo: nil,
+//            repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,6 +68,7 @@ extension TeamsVC : UICollectionViewDataSource{
         //creating reusable cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.TeamsLogo.cellIdentifier, for: indexPath) as! TeamLogosCVCell
         cell.logoImageView.image = teamsVMObj?.getTeamLogo(index: indexPath.row)
+        
         return cell
     }
   
@@ -82,11 +84,22 @@ extension TeamsVC : UICollectionViewDelegate{
             
         }, completion: nil)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        mSelectedTeam = teamsVMObj?.getTeamName(index: indexPath.row)
+        performSegue(withIdentifier: Constants.TeamToPlayers.segueIdentifier, sender: nil)
+    }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let playersTVCObj = segue.destination as! PlayersTVC
+        playersTVCObj.mSelectedTeam = self.mSelectedTeam
+    }
+    
 }
 
 extension TeamsVC: PReloading{
-    func reloadCollectionView(){
+    func reloadView(){
+        
         TeamsCollectionView.reloadData()
     }
 }
