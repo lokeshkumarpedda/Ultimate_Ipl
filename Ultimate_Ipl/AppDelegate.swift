@@ -14,10 +14,24 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var mask: CALayer?
+    var imageView: UIImageView?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        //for firebase
         FIRApp.configure()
+        
+        //for navigation image
+        let backgroundImage = UIImage(named: "navigationImage")?.resizableImage(withCapInsets: UIEdgeInsetsMake(0, 15, 0, 15), resizingMode: UIImageResizingMode.stretch)
+        UINavigationBar.appearance().setBackgroundImage(backgroundImage, for: .default)
+
+        
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        let imageView = UIImageView(frame: self.window!.frame)
+//        imageView.image = UIImage(named: "startingImage")
+//        self.window!.addSubview(imageView)
+//        
+//        self.window!.makeKeyAndVisible()
         // Override point for customization after application launch.
         return true
     }

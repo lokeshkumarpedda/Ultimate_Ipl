@@ -74,8 +74,9 @@ class ApiRequest {
             if (error != nil) {
                 // Uh-oh, an error occurred!
             } else {
-                let logo: String = Utility.encodeImageBase64(image: UIImage(data: data!)!)
-                
+                let playerImage: String = Utility.encodeImageBase64(image: UIImage(data: data!)!)
+                Database.savePlayerImageToDB(url: url, image: playerImage)
+                self.servicesProtocol?.givePlayerImage(image: playerImage)
             }
         }
         

@@ -13,3 +13,7 @@ protocol PReloading {
     
     func reloadView()
 }
+
+protocol PInformView {
+    func withTheimage(image : UIImage)
+}

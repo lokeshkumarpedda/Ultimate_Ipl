@@ -13,4 +13,6 @@ protocol FromServices {
     func getDataFromDatabase()
     
     func gotThePlayers(forTeam team:String)
+    
+    func givePlayerImage(image : String)
 }

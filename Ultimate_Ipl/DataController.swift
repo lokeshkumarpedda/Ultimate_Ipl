@@ -10,6 +10,8 @@ import UIKit
 class DataController {
     var givingDataProtocol : TeamDataGetting?
     var playerDataProtocol : PlayerDataGetting?
+    var playerImageProtocol : PlayerImageGetting?
+    
     var servicesObj : ApiRequest?
     
     init(withProtocol  obj: TeamDataGetting) {
@@ -22,6 +24,10 @@ class DataController {
         servicesObj = ApiRequest(withProtocol: self)
     }
     
+    init(withProtocol obj : PlayerImageGetting) {
+        playerImageProtocol = obj
+        servicesObj = ApiRequest(withProtocol: self)
+    }
     
     func getTeamInfo() {
         if Database.isDBEmpty(){
@@ -44,6 +50,17 @@ class DataController {
     func givePlayerData(players : [Player]){
         playerDataProtocol?.playerDataToViewModel(players: players)
     }
+    
+    func getPlayerImage(forUrl url : String){
+        if Database.isImageEmpty(url: url){
+            servicesObj?.fetchPlayerImage(withUrl: url)
+        }
+        else{
+            self.givePlayerImage(image: Database.getImageForUrl(url: url))
+        }
+    }
+    
+    
 }
 extension DataController : FromServices{
     func giveDataToController(team : [TeamLogos]){
@@ -56,5 +73,9 @@ extension DataController : FromServices{
     
     func gotThePlayers(forTeam team:String){
         self.getPlayerInfo(for: team)
+    }
+    
+    func givePlayerImage(image : String) {
+        playerImageProtocol?.playerImage(image: image)
     }
 }

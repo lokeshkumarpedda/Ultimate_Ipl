@@ -13,7 +13,7 @@ class TeamLogosCVCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.layer.cornerRadius = 5.0
+        self.layer.cornerRadius = 10.0
         self.clipsToBounds = true
     }
 }

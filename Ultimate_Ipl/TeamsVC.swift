@@ -22,34 +22,22 @@ class TeamsVC: UIViewController {
         teamsVMObj = TeamsViewModel(withProtocol: self)
         teamsVMObj?.getTeamData()
         TeamsCollectionView.backgroundColor = UIColor.clear
-        self.view.backgroundColor = UIColor.clear
-        mCurrentIndexPath = IndexPath(row: 0, section: 0)
-        //Timer.scheduledTimer(
-//            timeInterval: 3,
-//            target: self,
-//            selector:#selector(mChangeTheCell) ,
-//            userInfo: nil,
-//            repeats: true)
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "groundImage")?.draw(in: self.view.bounds)
+        
+        let backgroundImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        UIGraphicsEndImageContext()
+        
+        self.view.backgroundColor = UIColor(patternImage: backgroundImage)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    //for cell movement
-    func mChangeTheCell(){
-        if (mCurrentIndexPath?.row)! < (teamsVMObj?.numberOfRows())! - 1{
-            mCurrentIndexPath?.row = (mCurrentIndexPath?.row)! + 1
-            TeamsCollectionView.scrollToItem(at: mCurrentIndexPath!, at: UICollectionViewScrollPosition.centeredHorizontally , animated: true)
-        }else if (mCurrentIndexPath?.row)! == (teamsVMObj?.numberOfRows())! - 1{
-            mCurrentIndexPath?.row = 0
-            TeamsCollectionView.scrollToItem(at: mCurrentIndexPath!, at: UICollectionViewScrollPosition.centeredHorizontally , animated: true)
-        }
-        
-    }
-
-
 }
 
 extension TeamsVC : UICollectionViewDataSource{

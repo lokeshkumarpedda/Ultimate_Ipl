@@ -15,3 +15,9 @@ protocol TeamDataGetting {
 protocol PlayerDataGetting {
     func playerDataToViewModel(players : [Player])
 }
+
+protocol PlayerImageGetting {
+    func playerImage(image : String)
+}
+
+

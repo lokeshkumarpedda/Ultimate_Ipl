@@ -37,6 +37,7 @@ class Database {
         }
     }
     
+    //saving players to Database
     class func savePlayerToDB(name: String, teamName : String,profilePictureUrl: String, role : String,dateOfBirth: String, battingStyle : String,bowlingStyle: String, nationality : String) {
         
         var data = [NSManagedObject]()
@@ -69,7 +70,7 @@ class Database {
         }
     }
     
-    //for saving
+    //for saving player image
     class func savePlayerImageToDB(url: String, image : String) {
         
         var data = [NSManagedObject]()
@@ -84,8 +85,9 @@ class Database {
         let player = NSManagedObject(entity: entity!,
                                    insertInto: managedContext)
         
-        player.setValue(url, forKey: "imageUrl")
         player.setValue(image, forKey: "image")
+        player.setValue(url, forKey: "imageUrl")
+        
         
         do {
             try managedContext.save()
@@ -146,6 +148,29 @@ class Database {
         return players
     }
     
+    //getting image from database
+    class func getImageForUrl(url : String) -> String{
+        var images = [NSManagedObject]()
+        let appDelegate =
+            UIApplication.shared.delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PlayerImages")
+        let resultPredicate = NSPredicate(format: "imageUrl = %@", url)
+        fetchRequest.predicate = resultPredicate
+        
+        do {
+            let results =
+                try managedContext.fetch(fetchRequest)
+            images = results as! [NSManagedObject]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        return images[0].value(forKey: "image") as! String
+    }
+    
     
     //checking is teams is empty or not
     class func isDBEmpty() -> Bool{
@@ -192,6 +217,33 @@ class Database {
             print("Could not fetch \(error), \(error.userInfo)")
         }
         if teams.count == 0{
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    //checking the image is present or not
+    class func isImageEmpty(url : String) -> Bool{
+        var images = [NSManagedObject]()
+        let appDelegate =
+            UIApplication.shared.delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PlayerImages")
+        let resultPredicate = NSPredicate(format: "imageUrl = %@", url)
+        fetchRequest.predicate = resultPredicate
+        
+        do {
+            let results =
+                try managedContext.fetch(fetchRequest)
+            images = results as! [NSManagedObject]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        if images.count == 0{
             return true
         }
         else {
